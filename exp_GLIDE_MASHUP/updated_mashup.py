@@ -25,7 +25,7 @@ def main(args):
     As            = [np.load(f) for f in network_files]
     E             = compute_mashup_dsd(As, reduced_dim = args.dims)
     
-    out_file      = f"{args.input_folder}/OUT-dim_{args.dims}_const_{args.const}.npy"
+    out_file      = f"{args.input_folder}/OUT-dim_{args.dims}.npy"
 
     np.save(out_file, E)
 
