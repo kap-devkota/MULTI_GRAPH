@@ -4,7 +4,7 @@ import sys
 sys.path.append("./")
 import numpy as np
 import json as js
-from utils import compute_mashup_updated
+from utils import compute_mashup_dsd
 import argparse
 
 def getparams():
@@ -23,7 +23,7 @@ def main(args):
 
     network_files = [f"{args.input_folder}/{f}" for f in os.listdir(args.input_folder) if (f.endswith("npy") and not f.startswith("OUT"))]
     As            = [np.load(f) for f in network_files]
-    E             = compute_mashup_updated(As, reduced_dim = args.dims, const_param = args.const)
+    E             = compute_mashup_dsd(As, reduced_dim = args.dims)
     
     out_file      = f"{args.input_folder}/OUT-dim_{args.dims}_const_{args.const}.npy"
 
