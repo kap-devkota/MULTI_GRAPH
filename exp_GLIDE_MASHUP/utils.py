@@ -48,8 +48,9 @@ def compute_mashup_dsd(Ds, reduced_dim = 1000):
     n, _ = Ds[0].shape
     R = np.zeros((n, n))
     for D in Ds:
-        R += normalize_dist(D)
-    
+        Ri = normalize_dist(D)
+        R += Ri @ Ri.T # fixed bug
+        
     e, W = eig(R)
     # sort in descending order
     ids  = np.argsort(-e)
