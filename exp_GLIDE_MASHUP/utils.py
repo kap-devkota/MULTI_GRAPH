@@ -39,9 +39,10 @@ def compute_mashup_dsd(Ds, reduced_dim = 1000):
         """
         Normalizing the distance matrix: M^{-1/2}D M^{-1/2}
         """
-        dim, _ = D.shape
-        d      = D @ np.ones((dim, 1))
-        d_sqrt = np.sqrt(d)
+        dim, _              = D.shape
+        d                   = D @ np.ones((dim, 1))
+        d_sqrt              = np.sqrt(d)
+        d_sqrt[d_sqrt == 0] = 1
         return ((D / d_sqrt) / d_sqrt.T)
 
     n, _ = Ds[0].shape
