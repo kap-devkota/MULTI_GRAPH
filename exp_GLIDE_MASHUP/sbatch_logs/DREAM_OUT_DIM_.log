@@ -1,0 +1,3 @@
+usage: slurm_script [-h] [--input_folder INPUT_FOLDER] [--dims DIMS]
+                    [--verbose]
+slurm_script: error: argument --dims: invalid int value: ''

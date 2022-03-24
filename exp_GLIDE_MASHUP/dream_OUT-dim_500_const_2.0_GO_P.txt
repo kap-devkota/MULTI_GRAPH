@@ -1,0 +1,87 @@
+/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:764: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:764: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/sklearn/linear_model/_logistic.py:764: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  extra_warning_msg=_LOGISTIC_SOLVER_CONVERGENCE_MSG)
+Parsing Embedding
+(18735, 500)
+Parsed Embedding
+18735
+Building GO Annotations
+HMS:0:00:04.784970 335,858 annotations, 20,671 genes, 18,441 GOs, 1 taxids READ: /cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/glide/data/gene2go.dat 
+18388 IDs in loaded association branch, biological_process
+  EXISTS: /cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/glide/data/go-basic.obo.dat
+/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/glide/data/go-basic.obo.dat: fmt(1.2) rel(2021-02-01) 47,291 GO Terms; optional_attrs(relationship)
+Read gene2go.dat File
+Number of Labels: 84
+Completed Building GO Annotations
+/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/glide/data/go-basic.obo.dat: fmt(1.2) rel(2021-02-01) 47,291 GO Terms
+HMS:0:00:14.431488 608,616 annotations READ: /cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/glide/data/go-human.gaf.dat 
+17586 IDs in loaded association branch, BP
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+Fold 1 RESNIK_SIM: 1.2051733994089209
+Fold 2 RESNIK_SIM: 1.3372625935290057
+Fold 3 RESNIK_SIM: 1.3288828352408706
+Fold 4 RESNIK_SIM: 1.2431387838901284
+Fold 5 RESNIK_SIM: 1.3019423868390887
+Mean RESNIK_SIM: 1.283279999781603: Std: 0.051095952785576666
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+Fold 1 F1: 0.34420947863895524
+Fold 2 F1: 0.32713366349507367
+Fold 3 F1: 0.35906423940634863
+Fold 4 F1: 0.33110937152130526
+Fold 5 F1: 0.3264185293691509
+Mean F1: 0.3375870564861667: Std: 0.012498765433837385
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+The number of All the Labels 84
+Here
+Fold 1 ACC: 0.33719892952720787
+Fold 2 ACC: 0.3256021409455843
+Fold 3 ACC: 0.3184656556645852
+Fold 4 ACC: 0.30597680642283676
+Fold 5 ACC: 0.3111111111111111
+Mean ACC: 0.31967092873426506: Std: 0.010996928997566706

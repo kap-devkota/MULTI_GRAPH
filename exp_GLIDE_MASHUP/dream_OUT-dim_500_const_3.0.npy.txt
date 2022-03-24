@@ -1,0 +1,27 @@
+Parsing Embedding
+Parsing Embedding
+Traceback (most recent call last):
+  File "/var/spool/slurm/job12221678/slurm_script", line 168, in <module>
+    main()
+  File "/var/spool/slurm/job12221678/slurm_script", line 89, in main
+    E           = np.load(network, allow_pickle = True)
+  File "/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/numpy/lib/npyio.py", line 428, in load
+    fid = open(os_fspath(file), "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'dream_nets/OUT-dim_500_const_3.0.npy.npy'
+Traceback (most recent call last):
+  File "/var/spool/slurm/job12221682/slurm_script", line 168, in <module>
+    main()
+  File "/var/spool/slurm/job12221682/slurm_script", line 89, in main
+    E           = np.load(network, allow_pickle = True)
+  File "/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/numpy/lib/npyio.py", line 428, in load
+    fid = open(os_fspath(file), "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'dream_nets/OUT-dim_500_const_3.0.npy.npy'
+Parsing Embedding
+Traceback (most recent call last):
+  File "/var/spool/slurm/job12221674/slurm_script", line 168, in <module>
+    main()
+  File "/var/spool/slurm/job12221674/slurm_script", line 89, in main
+    E           = np.load(network, allow_pickle = True)
+  File "/cluster/tufts/cowenlab/.envs/denoise/lib/python3.7/site-packages/numpy/lib/npyio.py", line 428, in load
+    fid = open(os_fspath(file), "rb")
+FileNotFoundError: [Errno 2] No such file or directory: 'dream_nets/OUT-dim_500_const_3.0.npy.npy'
