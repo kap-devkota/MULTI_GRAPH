@@ -13,15 +13,23 @@ MAXL=5
 
 GOTYPE=(P F C)
 
-epoch=50
-MODEL_DIR=dream_nets
-CFILE=("OUT-dim_1000_const_2.0" "OUT-dim_500_const_2.0" "OUT-dim_500_const_3.0.npy") # DREAM1,2,3
+MODEL_DIR=dream_dsd_folder
+EMBED=OUT-buggy_dim_1000.npy
+
+while getopts "e:" args; do
+    case $args in
+	e) EMBED=$OPTARG
+	   ;;
+    esac
+done
+
+OFILE=output_folder/$EMBED
+if [ ! -d $OFILE ]; then mkdir $OFILE; echo "Output folder created"; fi
+
+
+
 for GOT in ${GOTYPE[@]}
 do
-    for CF in  ${CFILE[@]}
-    do
-	echo "HERE"
-	OUTPUT=dream_${CF}_GO_${GOT}.txt
-	sbatch $SBATCH_OPTS -o ${OUTPUT} ./classify.py -v  --go_type=${GOT} --network=${MODEL_DIR}/${CF}.npy --json=${MODEL_DIR}/dream_nodemap.json 
-    done
+    OUTPUT=$OFILE/GO_${GOT}.txt
+    sbatch $SBATCH_OPTS -o ${OUTPUT} ./classify.py -v  --go_type=${GOT} --network=${MODEL_DIR}/${EMBED} --json=${MODEL_DIR}/nodemap.json 
 done 
