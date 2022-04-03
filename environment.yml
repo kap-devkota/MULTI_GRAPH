@@ -1,0 +1,25 @@
+name: multigraph
+
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  - bioconda
+
+dependencies:
+  - pip
+  - python
+  - h5py
+  - matplotlib
+  - numpy
+  - pandas
+  - scikit-learn
+  - scipy
+  - seaborn
+  - setuptools
+  - tqdm
+  - networkx
+  - mygene
+  - jupyterlab
+  - goatools
+  - biopython
