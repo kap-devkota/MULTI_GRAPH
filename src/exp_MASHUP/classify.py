@@ -2,8 +2,11 @@ import argparse
 import random
 import numpy as np
 import json
-from glide import scoring
-from glide import predict
+import os
+import sys
+sys.path.append("../scoring/")
+import scoring
+import predict
 import ctypes
 import re
 import scipy.spatial.distance as spatial
