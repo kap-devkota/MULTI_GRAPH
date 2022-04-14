@@ -1,3 +1,4 @@
+#!/cluster/tufts/cowenlab/.envs/denoise/bin/python
 import os
 import sys
 sys.path.append("./")
@@ -7,6 +8,7 @@ import pandas as pd
 import seaborn as sns
 import json
 import matplotlib.pyplot as plt
+import numpy as np
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -19,7 +21,7 @@ def get_args():
 
 
 def get_adjacency(filename):
-    df    = pd.read_csv(filename, delim_whitespace = True, header = False)
+    df    = pd.read_csv(filename, delim_whitespace = True, header = None)
     nodes = set(df[0]).union(set(df[1]))
     nodemap = {k: i for i, k in enumerate(nodes)}
 
@@ -35,9 +37,13 @@ def main(args):
     def log(strng):
         if args.verbose:
             print(strng)
+    log("Getting Adjacency Matrix...")
     A, nmap = get_adjacency(args.network_file)
+
+    log("Compute the potential distance...")
     X       = compute_potential_dist(A, args.timesteps, args.n_dims)
 
+    log("Saving...")
     output_emb, output_json = [f"{output_prefix}_dim_{args.n_dims}_t_{args.timesteps}.{k}"
                                for k in ["npy", "json"]]
     np.save(output_emb, X)
@@ -49,6 +55,7 @@ def main(args):
         """
         Perform SNS visualization
         """
+        log("Visualization...")
         dframe = pd.DataFrame(columns = ["p0", "p1"])
         dframe["p0"] = X[0]
         dframe["p1"] = X[1]
