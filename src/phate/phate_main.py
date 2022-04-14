@@ -14,7 +14,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("--network_file", help = "The input network file", required = True)
     parser.add_argument("--output_prefix", help = "Output prefix", default = "")
-    parser.add_argument("--n_dims", help = "PHATE dimension", default = 100, type = float)
+    parser.add_argument("--n_dims", help = "PHATE dimension", default = 100, type = int)
     parser.add_argument("--timesteps", help = "Timesteps", default = 5, type = int)
     parser.add_argument("--verbose", default = False, action = "store_true")
     return parser.parse_args()
@@ -40,8 +40,10 @@ def main(args):
     log("Getting Adjacency Matrix...")
     A, nmap = get_adjacency(args.network_file)
 
+    output_prefix = args.output_prefix
+    
     log("Compute the potential distance...")
-    X       = compute_potential_dist(A, args.timesteps, args.n_dims)
+    X       = compute_potential_dist(A, int(args.timesteps), int(args.n_dims))
 
     log("Saving...")
     output_emb, output_json = [f"{output_prefix}_dim_{args.n_dims}_t_{args.timesteps}.{k}"
@@ -59,7 +61,7 @@ def main(args):
         dframe = pd.DataFrame(columns = ["p0", "p1"])
         dframe["p0"] = X[0]
         dframe["p1"] = X[1]
-        sns.set_theme("blackgrid")
+        sns.set_theme(style="darkgrid")
         sns.relplot(data = dframe, x = "p0", y = "p1")
         plt.savefig(f"{output_prefix}_dim_{args.n_dims}_t_{args.timesteps}.png")
 
