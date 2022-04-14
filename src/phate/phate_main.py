@@ -59,8 +59,8 @@ def main(args):
         """
         log("Visualization...")
         dframe = pd.DataFrame(columns = ["p0", "p1"])
-        dframe["p0"] = X[0]
-        dframe["p1"] = X[1]
+        dframe["p0"] = X[:, 0]
+        dframe["p1"] = X[:, 1]
         sns.set_theme(style="darkgrid")
         sns.relplot(data = dframe, x = "p0", y = "p1")
         plt.savefig(f"{output_prefix}_dim_{args.n_dims}_t_{args.timesteps}.png")
