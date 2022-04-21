@@ -9,6 +9,7 @@ import scoring
 import predict
 import ctypes
 import graph_io
+import pandas as pd
 import re
 import scipy.spatial.distance as spatial
 
@@ -69,6 +70,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--network")
     parser.add_argument("--json")
+    parser.add_argument("--output")
     parser.add_argument("-v", action="store_true", help="Verbose mode")
     parser.add_argument("--minN", type = int, default = 50, help = "GO Label file minimum")
     parser.add_argument("--level", type = int, default = 5, help = "GO Label file maximum")
@@ -89,8 +91,8 @@ def main():
     
     print(E.shape)
     with open(njson, "r") as nj:
-        r_node_map = json.load(nj)
-        node_map    = {k: int(i) for i, k in r_node_map.items()}
+        node_map = json.load(nj)
+        r_node_map    = {k: int(i) for i, k in node_map.items()}
     node_list    = list(range(len(node_map)))
     for k in node_map:
         node_list[node_map[k]] = k
@@ -130,6 +132,9 @@ def main():
               for i in range(n) if node_list[i] in proteins_to_go}
     log("Completed Building GO Annotations")
 
+    # Results
+    results = {}
+    
     kfold = 5
     namespace = "MF"
     if GO_TYPE == "biological_process":
@@ -144,6 +149,7 @@ def main():
     meth   = "RESNIK_SIM"
     for i in range(len(metric)):
         print(f"Fold {i + 1} {meth}: {metric[i]}")
+    results["RESNICK"] = metric
     print(f"Mean {meth}: {np.mean(metric)}: Std: {np.std(metric)}")
     
 
@@ -153,6 +159,7 @@ def main():
     meth   = "F1"
     for i in range(len(metric)):
         print(f"Fold {i + 1} {meth}: {metric[i]}")
+    results["F1"]     = metric
     print(f"Mean {meth}: {np.mean(metric)}: Std: {np.std(metric)}")
 
     metric = scoring.kfoldcv(kfold,
@@ -161,9 +168,12 @@ def main():
     meth   = "ACC"
     for i in range(len(metric)):
         print(f"Fold {i + 1} {meth}: {metric[i]}")
+    results["ACC"] = metric
     print(f"Mean {meth}: {np.mean(metric)}: Std: {np.std(metric)}")
-
-       
+    
+    df = pd.DataFrame(results)
+    print(f"Saving...")
+    df.to_csv(args.output)
 if __name__ == "__main__":
     main()
     
