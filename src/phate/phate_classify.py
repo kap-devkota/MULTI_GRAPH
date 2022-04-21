@@ -89,8 +89,8 @@ def main():
     
     print(E.shape)
     with open(njson, "r") as nj:
-        r_node_map = json.load(nj)
-        node_map    = {k: int(i) for i, k in r_node_map.items()}
+        node_map = json.load(nj)
+        r_node_map    = {k: i for i, k in node_map.items()}
     node_list    = list(range(len(node_map)))
     for k in node_map:
         node_list[node_map[k]] = k
