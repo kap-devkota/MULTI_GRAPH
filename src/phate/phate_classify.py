@@ -1,3 +1,4 @@
+#!/cluster/tufts/cowenlab/.envs/denoise/bin/python
 import argparse
 import random
 import numpy as np
@@ -173,7 +174,7 @@ def main():
     
     df = pd.DataFrame(results)
     print(f"Saving...")
-    df.to_csv(args.output)
+    df.to_csv(args.output, sep = "\t")
 if __name__ == "__main__":
     main()
     

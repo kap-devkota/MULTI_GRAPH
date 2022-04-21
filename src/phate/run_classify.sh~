@@ -1,0 +1,29 @@
+#!/bin/bash
+
+SBATCH_OPTS="\
+--mem=64GB \
+--partition=preempt \
+--mail-type=END --mail-user=Kapil.Devkota@tufts.edu \
+--time=1-10:00:00 \
+"
+
+GOS=(P F C)
+while getopts "n:o:" args; do
+    case $args in
+	n) NETWORK=${OPTARG}.npy
+	   JSON=${OPTARG}.json
+	   ;;
+	o) OUTPUT=${OPTARG}
+	   ;;
+    esac
+done
+
+NETNAME=${NETWORK##*/}
+NETNAME=${NETNAME%%.*}
+
+echo "$NETNAME"
+
+for GO in ${GOS[@]}; do
+    OP=${OUTPUT}-${NETNAME}-${GO}-LOG.txt
+    sbatch $SBATCH_OPTS -o ${OP} ./phate_main.py --network=$NETWORK --json=$JSON --output=${OUTPUT}-${NETNAME}-${GO}.tsv -v --is_ensp --go_type=${GO}
+done
