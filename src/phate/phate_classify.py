@@ -8,6 +8,7 @@ sys.path.append("../scoring/")
 import scoring
 import predict
 import ctypes
+import graph_io
 import re
 import scipy.spatial.distance as spatial
 
@@ -35,7 +36,7 @@ def entrez_dict(IS_SYMBOL = True):
     if not IS_SYMBOL:
         ensp_dict = {}
         header    = True
-        with open("/cluster/tufts/cowenlab/Projects/Multiple_Graphs/dataset/9606.protein.info.v11.5.txt", "r") as of:
+        with open("../../datasets/STRING/9606.protein.info.v11.5.txt", "r") as of:
             for line in of:
                 if header:
                     header = False
@@ -45,7 +46,7 @@ def entrez_dict(IS_SYMBOL = True):
                     ensp_dict[words[1]] = words[0]
             
     s_e_dict = {}
-    with open("/cluster/tufts/cowenlab/Projects/Denoising_Experiments/shared_data/dream_files/idmap.csv", "r") as of:
+    with open("../../datasets/MISC/idmap.csv", "r") as of:
         header = True
         for line in of:
             if header:
@@ -111,7 +112,9 @@ def main():
     filter_parents = {"namespace": GO_TYPE}                
     s_entrez, entrez_s = entrez_dict(not args.is_ensp)
     e_symbols          = [s_entrez[k] for k in node_list if k in s_entrez]
-    f_labels, labels_dict, parent_dict = graph_io.get_go_labels_and_parents(filter_protein, 
+    f_labels, labels_dict, parent_dict = graph_io.get_go_labels_and_parents("../../datasets/GO/go-basic.obo",
+                                                                            "../../datasets/GO/gene2go",
+                                                                            filter_protein, 
                                                                             filter_labels,
                                                                             filter_parents,
                                                                             e_symbols,

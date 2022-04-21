@@ -101,8 +101,8 @@ def write_graph_to_file(filename, edgelist, node_map=None):
         fp.write(list_str)
 
 class GoTool:
-    def __init__(self):
-        gdagfile = pkg_resources.resource_filename('glide', 'data/go-basic.obo.dat')
+    def __init__(self, gdagfile):
+        # gdagfile = pkg_resources.resource_filename('glide', 'data/go-basic.obo.dat')
         # self.godag = get_godag('go-basic.obo', optional_attrs='relationship')
         self.godag = get_godag(gdagfile, optional_attrs='relationship')
     def get_labels(self, filters = None):
@@ -144,13 +144,19 @@ class GoTool:
             parents.append(nObj.id)
         return parents
         
-def get_go_labels_and_parents(filter_protein, filter_label, filter_parent, entrez_labels, anno_map = lambda x : x):
-    g2gofile = pkg_resources.resource_filename('glide', 'data/gene2go.dat')
+def get_go_labels_and_parents(gdagfile,
+                              g2gofile,
+                              filter_protein,
+                              filter_label,
+                              filter_parent,
+                              entrez_labels,
+                              anno_map = lambda x : x):
+    # g2gofile = pkg_resources.resource_filename('glide', 'data/gene2go.dat')
     objanno = Gene2GoReader(g2gofile, taxids=[9606])
     go2geneids_human = objanno.get_id2gos(namespace=filter_protein["namespace"], 
                                           go2geneids=True)
     mg = mygene.MyGeneInfo()
-    gt          = GoTool()
+    gt          = GoTool(gdagfile)
     labels      = gt.get_labels(filter_label)
     print("Read gene2go.dat File")
     labels_dict = {}
